@@ -1,0 +1,4 @@
+name: FileManager
+version: ${project.version}
+main: ubiquitaku.filemanager.FileManager
+api-version: 1.16
