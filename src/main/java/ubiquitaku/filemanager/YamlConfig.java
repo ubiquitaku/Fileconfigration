@@ -16,8 +16,10 @@ public class YamlConfig {
     public YamlConfig(JavaPlugin pl) {
         plugin = pl;
         make();
+        read();
     }
 
+    //ディレクトリが存在しない場合ディレクトリとデフォルトのファイルを生成する（ディレクトリが存在してデフォルトのファイルが存在しない場合はデフォルトのファイルは生成されない）
     public boolean make() {
         File dir = new File(plugin.getDataFolder().getAbsolutePath()+"/ubi");
         if (!dir.exists()) {
@@ -37,6 +39,7 @@ public class YamlConfig {
         return true;
     }
 
+    //ディレクトリに保存されているファイルを読み込んでListに入れ、ファイルが存在しなかった場合はそのListは空になる
     public void read() {
         File file = new File(plugin.getDataFolder().getAbsolutePath()+"/ubi");
         File[] files = file.listFiles();
@@ -48,10 +51,14 @@ public class YamlConfig {
             list.add(c);
         }
         if (list.size() == 0) {
+            yml = new ArrayList<>();
             return;
         }
         yml = list;
     }
+
+
+    //ここから下は推奨はしないけど使えると思われるもの
 
     public String getString(String path) {
         for (FileConfiguration f : yml) {
@@ -93,11 +100,31 @@ public class YamlConfig {
         return false;
     }
 
-    public boolean containts(String path) {
+    public boolean contains(String path) {
         for (FileConfiguration f : yml) {
             if (!f.contains(path)) {
                 continue;
             }
+            return true;
+        }
+        return false;
+    }
+
+    //非推奨の中でも特に非推奨 上書きしかできない雑魚
+    public boolean set(String path,String s) {
+        if (yml.size() == 0) {
+            Bukkit.getLogger().warning("ファイルが読み込まれていません");
+            return false;
+        }
+        if (!contains(path)) {
+            Bukkit.getLogger().warning("存在しないpathを指定されたため上書きできません");
+            return false;
+        }
+        for (FileConfiguration f : yml) {
+            if (!f.contains(path)) {
+                continue;
+            }
+            f.set(path,s);
             return true;
         }
         return false;
