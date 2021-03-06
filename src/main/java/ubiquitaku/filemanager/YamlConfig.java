@@ -37,7 +37,7 @@ public class YamlConfig {
         return true;
     }
 
-    public List<FileConfiguration> read() {
+    public void read() {
         File file = new File(plugin.getDataFolder().getAbsolutePath()+"/ubi");
         File[] files = file.listFiles();
         List<FileConfiguration> list = new ArrayList<>();
@@ -48,9 +48,9 @@ public class YamlConfig {
             list.add(c);
         }
         if (list.size() == 0) {
-            return new ArrayList<>();
+            return;
         }
-        return list;
+        yml = list;
     }
 
     public String getString(String path) {
