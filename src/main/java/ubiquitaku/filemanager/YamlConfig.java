@@ -12,11 +12,9 @@ import java.util.List;
 
 public class YamlConfig {
     JavaPlugin plugin;
-    List<FileConfiguration> yml = new ArrayList<>();
     public YamlConfig(JavaPlugin pl) {
         plugin = pl;
         if (!make())return;
-        read();
     }
 
     public boolean make() {
@@ -48,57 +46,56 @@ public class YamlConfig {
             FileConfiguration c = YamlConfiguration.loadConfiguration(f);
             list.add(c);
         }
-        yml = list;
         return list;
     }
 
-    public String getString(String path) {
-        for (FileConfiguration f : yml) {
-            if (!f.contains(path)) {
-                continue;
-            }
-            return f.getString(path);
-        }
-        return null;
-    }
-
-    public Integer getInt(String path) {
-        for (FileConfiguration f : yml) {
-            if (!f.contains(path)) {
-                continue;
-            }
-            return f.getInt(path);
-        }
-        return null;
-    }
-
-    public List<String> getList(String path) {
-        for (FileConfiguration f : yml) {
-            if (!f.contains(path)) {
-                continue;
-            }
-            return (List<String>) f.getList(path);
-        }
-        return null;
-    }
-
-    public boolean getBoolean(String path) {
-        for (FileConfiguration f : yml) {
-            if (!f.contains(path)) {
-                continue;
-            }
-            return f.getBoolean(path);
-        }
-        return false;
-    }
-
-    public boolean containts(String path) {
-        for (FileConfiguration f : yml) {
-            if (!f.contains(path)) {
-                continue;
-            }
-            return true;
-        }
-        return false;
-    }
+//    public String getString(String path) {
+//        for (FileConfiguration f : yml) {
+//            if (!f.contains(path)) {
+//                continue;
+//            }
+//            return f.getString(path);
+//        }
+//        return null;
+//    }
+//
+//    public Integer getInt(String path) {
+//        for (FileConfiguration f : yml) {
+//            if (!f.contains(path)) {
+//                continue;
+//            }
+//            return f.getInt(path);
+//        }
+//        return null;
+//    }
+//
+//    public List<String> getList(String path) {
+//        for (FileConfiguration f : yml) {
+//            if (!f.contains(path)) {
+//                continue;
+//            }
+//            return (List<String>) f.getList(path);
+//        }
+//        return null;
+//    }
+//
+//    public boolean getBoolean(String path) {
+//        for (FileConfiguration f : yml) {
+//            if (!f.contains(path)) {
+//                continue;
+//            }
+//            return f.getBoolean(path);
+//        }
+//        return false;
+//    }
+//
+//    public boolean containts(String path) {
+//        for (FileConfiguration f : yml) {
+//            if (!f.contains(path)) {
+//                continue;
+//            }
+//            return true;
+//        }
+//        return false;
+//    }
 }
