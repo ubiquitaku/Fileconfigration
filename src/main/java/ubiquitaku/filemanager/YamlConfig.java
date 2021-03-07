@@ -110,8 +110,8 @@ public class YamlConfig {
         return false;
     }
 
-    //非推奨の中でも特に非推奨 上書きしかできない雑魚
-    public boolean set(String path,String s) {
+    //非推奨の中でも特に非推奨 上書きしかできない雑魚 上書き完了後保存までするがちゃんと保存できるかは知らん
+    public boolean set(String path,String s) throws IOException {
         if (yml.size() == 0) {
             Bukkit.getLogger().warning("ファイルが読み込まれていません");
             return false;
@@ -125,6 +125,7 @@ public class YamlConfig {
                 continue;
             }
             f.set(path,s);
+            f.save(f.getName());
             return true;
         }
         return false;
