@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class YamlConfig {
+    /*
+    このpluginっていうかクラスは使えるかの確認などを全く行っていないため、動かなくてもキレないんでください
+     */
     JavaPlugin plugin;
     List<FileConfiguration> yml = new ArrayList<>();
     public YamlConfig(JavaPlugin pl) {
